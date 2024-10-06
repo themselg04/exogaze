@@ -1,0 +1,163 @@
+[gd_scene load_steps=19 format=3 uid="uid://ejgjhcgk3v8o"]
+
+[ext_resource type="Script" path="res://Scripts/Stars/Star_Manager.gd" id="1_f57ge"]
+[ext_resource type="Sky" uid="uid://c8e52dmjmfgu2" path="res://Resources/skybox.tres" id="1_k1f2h"]
+[ext_resource type="Script" path="res://Scripts/ui_hider.gd" id="2_07qh5"]
+[ext_resource type="Script" path="res://Scripts/camera_script2.gd" id="2_dr3f0"]
+[ext_resource type="Theme" uid="uid://cmy6bumf43du6" path="res://Resources/planet_text.tres" id="3_kesfc"]
+[ext_resource type="Script" path="res://Scripts/stelarium_ui.gd" id="3_vb5pq"]
+[ext_resource type="FontFile" uid="uid://dywtvv3ca0im4" path="res://Fonts/Merriweather/Merriweather-Bold.ttf" id="5_583qx"]
+[ext_resource type="FontFile" uid="uid://bohd5xb62kqa7" path="res://Fonts/Merriweather/Merriweather-Regular.ttf" id="5_kkciq"]
+[ext_resource type="Animation" uid="uid://yk3ysvcg6l4j" path="res://Animations/show_list.res" id="8_0ij4p"]
+
+[sub_resource type="Environment" id="Environment_f67ri"]
+background_mode = 2
+background_energy_multiplier = 0.25
+sky = ExtResource("1_k1f2h")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 7.92
+reflected_light_source = 1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o7aa3"]
+
+[sub_resource type="Compositor" id="Compositor_pt341"]
+
+[sub_resource type="Theme" id="Theme_efsuw"]
+default_font = ExtResource("5_kkciq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eef1u"]
+bg_color = Color(0, 0.0980392, 0.137255, 0.760784)
+corner_radius_top_left = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_px74s"]
+default_font = ExtResource("5_583qx")
+default_font_size = 23
+
+[sub_resource type="Theme" id="Theme_51v58"]
+default_font = ExtResource("5_kkciq")
+default_font_size = 19
+
+[sub_resource type="Animation" id="Animation_ecv8l"]
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvcw7"]
+_data = {
+"RESET": SubResource("Animation_ecv8l"),
+"hide_list": ExtResource("8_0ij4p"),
+"show_list": ExtResource("8_0ij4p")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f67ri")
+camera_attributes = SubResource("CameraAttributesPractical_o7aa3")
+compositor = SubResource("Compositor_pt341")
+
+[node name="UIHider" type="Node3D" parent="."]
+script = ExtResource("2_07qh5")
+
+[node name="MainUI" type="Control" parent="UIHider"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 642.0
+
+[node name="HiddableUI" type="Control" parent="UIHider/MainUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 1166.0
+offset_bottom = 656.0
+script = ExtResource("3_vb5pq")
+
+[node name="Button" type="Button" parent="UIHider/MainUI/HiddableUI"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 598.0
+offset_right = 80.0
+offset_bottom = 627.0
+theme = SubResource("Theme_efsuw")
+text = "Regresar"
+
+[node name="OptionList" type="ItemList" parent="UIHider/MainUI/HiddableUI"]
+layout_mode = 2
+offset_left = 871.0
+offset_top = 73.0
+offset_right = 1147.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eef1u")
+allow_search = false
+
+[node name="OptionListTitle" type="RichTextLabel" parent="UIHider/MainUI/HiddableUI/OptionList"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 226.0
+offset_bottom = 56.0
+theme = SubResource("Theme_px74s")
+text = "Constelaciones"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UIHider/MainUI/HiddableUI/OptionList"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 58.0
+offset_right = 257.0
+offset_bottom = 474.0
+
+[node name="ConstelationBox" type="HBoxContainer" parent="UIHider/MainUI/HiddableUI/OptionList/ScrollContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="VBoxContainer" parent="UIHider/MainUI/HiddableUI/OptionList/ScrollContainer/ConstelationBox"]
+layout_mode = 2
+size_flags_stretch_ratio = 4.29
+
+[node name="CheckButton" type="CheckButton" parent="UIHider/MainUI/HiddableUI/OptionList/ScrollContainer/ConstelationBox/ButtonContainer"]
+layout_mode = 2
+
+[node name="TextContainer" type="VBoxContainer" parent="UIHider/MainUI/HiddableUI/OptionList/ScrollContainer/ConstelationBox"]
+custom_minimum_size = Vector2(170, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.29
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIHider/MainUI/HiddableUI/OptionList/ScrollContainer/ConstelationBox/TextContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_51v58")
+text = "Placeholder"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIHider/MainUI/HiddableUI/OptionList"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_nvcw7")
+}
+
+[node name="ShowPlanetName" type="RichTextLabel" parent="UIHider/MainUI/HiddableUI"]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 24.0
+offset_right = 841.0
+offset_bottom = 184.0
+theme = ExtResource("3_kesfc")
+text = "nombre_planeta"
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+fov = 61.5
+script = ExtResource("2_dr3f0")
+
+[node name="Stars" type="Node3D" parent="."]
+script = ExtResource("1_f57ge")
+
+[node name="Constellations" type="Node" parent="Stars"]
+
+[node name="Creating" type="Node" parent="Stars/Constellations"]
+
+[connection signal="pressed" from="UIHider/MainUI/HiddableUI/Button" to="UIHider/MainUI/HiddableUI" method="_on_button_pressed"]

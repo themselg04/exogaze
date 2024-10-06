@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dguidyoijgduk"]
+
+[ext_resource type="Script" path="res://Scripts/Stars/Star.gd" id="1_2bhyc"]
+[ext_resource type="Script" path="res://Scripts/Stars/Star_Clickable.gd" id="1_s3dho"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p7g4j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gac2w"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[node name="Star" type="Node3D"]
+script = ExtResource("1_2bhyc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_s3dho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.00473142)
+shape = SubResource("SphereShape3D_p7g4j")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 1.0
+radial_segments = 10
+material = SubResource("StandardMaterial3D_gac2w")

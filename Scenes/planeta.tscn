@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b050j25pyoq3d"]
+
+[ext_resource type="Script" path="res://Scenes/script_planeta.gd" id="1_s6lkg"]
+[ext_resource type="FontFile" uid="uid://bohd5xb62kqa7" path="res://Fonts/Merriweather/Merriweather-Regular.ttf" id="2_6mepd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ha8p0"]
+backlight_enabled = true
+backlight = Color(0.393086, 0.393086, 0.393085, 1)
+
+[node name="Planeta" type="Node3D"]
+script = ExtResource("1_s6lkg")
+
+[node name="Mesh" type="CSGSphere3D" parent="."]
+radial_segments = 15
+rings = 15
+material = SubResource("StandardMaterial3D_ha8p0")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614421, 0)
+font = ExtResource("2_6mepd")
+font_size = 20

@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://b63s5e1hl8ypy"]
+
+[ext_resource type="Script" path="res://Scripts/manager_planetas.gd" id="1_gkrna"]
+[ext_resource type="FontFile" uid="uid://boh7ss3vf8pvh" path="res://Fonts/Sixtyfour_Convergence/SixtyfourConvergence-Regular-VariableFont_BLED,SCAN,XELA,YELA.ttf" id="2_30i1u"]
+[ext_resource type="Sky" uid="uid://c8e52dmjmfgu2" path="res://Resources/skybox.tres" id="2_nxqhg"]
+
+[sub_resource type="Theme" id="Theme_mxa6j"]
+default_font = ExtResource("2_30i1u")
+default_font_size = 70
+
+[sub_resource type="Environment" id="Environment_1ispc"]
+background_mode = 2
+sky = ExtResource("2_nxqhg")
+
+[node name="orrery" type="Node3D"]
+
+[node name="planetas" type="Node3D" parent="."]
+script = ExtResource("1_gkrna")
+
+[node name="Control" type="Control" parent="."]
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1085.0
+offset_bottom = 597.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -517.5
+offset_top = -56.0
+offset_right = 589.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_mxa6j")
+bbcode_enabled = true
+text = "[center] EXOGAZE [/center]"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.794701, 0.607001, 0, -0.607001, 0.794701, 0, 14.3274, 17.0676)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+current = true
+fov = 65.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ispc")

@@ -1,0 +1,9 @@
+[gd_resource type="Sky" load_steps=3 format=3 uid="uid://c8e52dmjmfgu2"]
+
+[ext_resource type="Texture2D" uid="uid://bkthb1wi1gfdp" path="res://Resources/deep_sky_2020.jpg" id="1_nduds"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j6stn"]
+panorama = ExtResource("1_nduds")
+
+[resource]
+sky_material = SubResource("PanoramaSkyMaterial_j6stn")
