@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "Proxima Centauri b",
+    "ascencion_recta": 217.42895,
+    "dec": -62.6794,
+    "distancia": 1.295
+  },
+  {
+    "nombre": "HD 189733 b",
+    "ascencion_recta": 300.182125,
+    "dec":22.7108611,
+    "distancia": 19.3
+  },
+  {
+    "nombre": "Kepler-16 B",
+    "ascencion_recta": 289.075,
+    "dec": 51.7575,
+    "distancia": 61.36 
+  },
+  {
+    "nombre": "WASP-12b",
+    "ascencion_recta": 97.636625,
+    "dec": 29.67226,
+    "distancia": 266.7432
+  },
+  {
+    "nombre": "TRAPPIST-1 e",
+    "ascencion_recta": 346.62083,
+    "dec": -5.0434,
+    "distancia": 12.0984
+  }
+]
